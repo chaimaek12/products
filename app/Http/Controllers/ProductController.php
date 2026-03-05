@@ -28,4 +28,22 @@ public function destroy($id)
     $product->delete();
     return redirect()->back();
 }
+
+
+
+public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    return view('products.edit', compact('product'));
+}
+
+
+public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
+
+    $product->update($request->all());
+
+    return redirect('/products');
+}
 }
